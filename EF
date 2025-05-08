@@ -6,11 +6,10 @@ info:
 servers:
   - url: https://api.example.com
     description: Production Server
-  - url: http://localhost:3000
-    description: Local Development Server
 paths:
   /initialisation/cadrage:
     post:
+      operationId: postInitialisationCadrage
       summary: Generate a project framing note
       requestBody:
         required: true
@@ -23,12 +22,14 @@ paths:
           description: Framing note created successfully
   /initialisation/raci:
     get:
+      operationId: getInitialisationRaci
       summary: Generate a RACI matrix
       responses:
         '200':
           description: RACI matrix generated
   /technique/analyse-besoins:
     post:
+      operationId: postTechniqueAnalyseBesoins
       summary: Analyze technical needs
       requestBody:
         required: true
@@ -41,6 +42,7 @@ paths:
           description: Technical analysis completed
   /commerciale/analyse-marche:
     post:
+      operationId: postCommercialeAnalyseMarche
       summary: Generate market analysis
       requestBody:
         required: true
@@ -53,6 +55,7 @@ paths:
           description: Market analysis generated
   /commerciale/strategie-marketing:
     post:
+      operationId: postCommercialeStrategieMarketing
       summary: Create marketing strategy (4P)
       requestBody:
         required: true
@@ -65,6 +68,7 @@ paths:
           description: Marketing strategy generated
   /finance/calcule-indicateurs:
     post:
+      operationId: postFinanceCalculeIndicateurs
       summary: Calculate NPV, IRR and Payback
       requestBody:
         required: true
@@ -77,6 +81,7 @@ paths:
           description: Financial indicators calculated
   /impact/environnemental:
     post:
+      operationId: postImpactEnvironnemental
       summary: Generate environmental impact report (LCA)
       requestBody:
         required: true
@@ -89,12 +94,14 @@ paths:
           description: Environmental report generated
   /telechargement/modele:
     get:
+      operationId: getTelechargementModele
       summary: Download Excel feasibility model
       responses:
         '200':
           description: Excel file download link
   /upload/etude:
     post:
+      operationId: postUploadEtude
       summary: Upload a feasibility Excel file for analysis
       requestBody:
         content:
