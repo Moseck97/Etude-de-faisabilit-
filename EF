@@ -1,0 +1,224 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API - Étude de Faisabilité de Projet",
+    "version": "1.0.0",
+    "description": "API pour accompagner les projets via un expert GPT en étude de faisabilité."
+  },
+  "paths": {
+    "/initialisation/cadrage": {
+      "post": {
+        "summary": "Génère une note de cadrage",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nom_projet": { "type": "string" },
+                  "objectif": { "type": "string" },
+                  "parties_prenantes": { "type": "array", "items": { "type": "string" } },
+                  "contraintes": { "type": "array", "items": { "type": "string" } },
+                  "interactions_projets": { "type": "array", "items": { "type": "string" } }
+                },
+                "required": ["nom_projet", "objectif"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Note de cadrage générée"
+          }
+        }
+      }
+    },
+
+    "/initialisation/raci": {
+      "get": {
+        "summary": "Génère une matrice RACI",
+        "responses": {
+          "200": {
+            "description": "Matrice RACI générée"
+          }
+        }
+      }
+    },
+
+    "/technique/analyse-besoins": {
+      "post": {
+        "summary": "Analyse les besoins techniques",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "produits": { "type": "array", "items": { "type": "string" } },
+                  "normes": { "type": "array", "items": { "type": "string" } },
+                  "ressources": { "type": "array", "items": { "type": "string" } }
+                },
+                "required": ["produits"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Analyse technique générée"
+          }
+        }
+      }
+    },
+
+    "/commerciale/analyse-marche": {
+      "post": {
+        "summary": "Génère une analyse de marché",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "produit": { "type": "string" },
+                  "cible": { "type": "string" },
+                  "zone_geographique": { "type": "string" }
+                },
+                "required": ["produit", "cible"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Analyse de marché générée"
+          }
+        }
+      }
+    },
+
+    "/commerciale/strategie-marketing": {
+      "post": {
+        "summary": "Crée une stratégie marketing 4P",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "produit": { "type": "string" },
+                  "concurrents": { "type": "array", "items": { "type": "string" } },
+                  "prix": { "type": "string" },
+                  "canaux": { "type": "array", "items": { "type": "string" } }
+                },
+                "required": ["produit"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Stratégie marketing générée"
+          }
+        }
+      }
+    },
+
+    "/finance/calcule-indicateurs": {
+      "post": {
+        "summary": "Calcule la VAN, TRI et Payback",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "investissement_initial": { "type": "number" },
+                  "flux_annuels": { "type": "array", "items": { "type": "number" } },
+                  "taux_actualisation": { "type": "number" }
+                },
+                "required": ["investissement_initial", "flux_annuels", "taux_actualisation"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Indicateurs financiers calculés"
+          }
+        }
+      }
+    },
+
+    "/impact/environnemental": {
+      "post": {
+        "summary": "Génère un rapport ACV simplifié",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "activité": { "type": "string" },
+                  "consommation_energie": { "type": "string" },
+                  "matières_premières": { "type": "array", "items": { "type": "string" } },
+                  "émissions_CO2": { "type": "number" }
+                },
+                "required": ["activité"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Rapport ACV généré"
+          }
+        }
+      }
+    },
+
+    "/telechargement/modele": {
+      "get": {
+        "summary": "Télécharge le modèle Excel de faisabilité",
+        "responses": {
+          "200": {
+            "description": "Fichier Excel téléchargé"
+          }
+        }
+      }
+    },
+
+    "/upload/etude": {
+      "post": {
+        "summary": "Upload d’un fichier Excel pour analyse",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                },
+                "required": ["file"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Fichier analysé avec succès"
+          }
+        }
+      }
+    }
+  }
+}
